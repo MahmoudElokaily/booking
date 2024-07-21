@@ -24,7 +24,7 @@ class PostController extends Controller
         ]);
         $imagesName = [];
         foreach ($request->images as $image) {
-            $imageName = ImageHelpers::saveImage($image, "images/owner/" . Auth::user()->name . Auth::id());
+            $imageName = ImageHelpers::saveImage($image, "images/owner/" . Auth::user()->name);
             $imagesName[] = $imageName;
             sleep(1);
         }

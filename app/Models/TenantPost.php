@@ -10,7 +10,7 @@ class TenantPost extends Model
     use HasFactory;
     protected $fillable = ['description' , 'user_id' , 'created_at' , 'updated_at'];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

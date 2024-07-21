@@ -264,43 +264,43 @@
 
                     @foreach($posts as $post)
                         <li class="list-group-item w-50">
-                        <article href="/qiongliwu/posts/27294">
-                            <div class="d-inline-flex" style="width:100%"> <a href="#/qiongliwu">
-                                    <div class="info_author_photo pl-2 pt-2"><img
-                                            src="@if(isset($post['user']['photo'])) {{asset('images/' . $post['user']['name'] . "/" . $post['user']['photo'])}} @else {{asset('images/default/default.jpg')}} @endif"
-                                            alt="..." style="width:3rem;height:3rem"
-                                            class="mr-3 rounded-circle"></div>
-                                </a>
-                                <div class="flex-fill pt-2">
-                                    <div class="d-flex">
-                                        <div class="d-flex info_author">
-                                            <div>
+                            <article href="/qiongliwu/posts/27294">
+                                <div class="d-inline-flex" style="width:100%"> <a href="#/qiongliwu">
+                                        <div class="info_author_photo pl-2 pt-2"><img
+                                                src="@if(isset($post->user->photo)) {{asset('images/' . $post->user->name . "/$post->user->photo")}} @else {{asset('images/default/default.jpg')}} @endif"
+                                                alt="..." style="width:3rem;height:3rem"
+                                                class="mr-3 rounded-circle"></div>
+                                    </a>
+                                    <div class="flex-fill pt-2">
+                                        <div class="d-flex">
+                                            <div class="d-flex info_author">
+                                                <div>
 
-                                                <div class="d-flex">
-                                                    <a href="#/qiongliwu" class="text-a">
-                                                        <div style="line-height:100%"> <span
-                                                                class="v-text-s">
-                                                                                {{$post['user']['name'] ?? ""}}</span>
+                                                    <div class="d-flex">
+                                                        <a href="#/qiongliwu" class="text-a">
+                                                            <div style="line-height:100%"> <span
+                                                                    class="v-text-s">
+                                                                                {{$post->user->name ?? ""}}</span>
+                                                            </div>
+                                                        </a>
+                                                        <div class="pl-2 text-m">
+                                                            <span class="text-to">{{$post->user->email ?? ""}}</span>
+
                                                         </div>
-                                                    </a>
-                                                    <div class="pl-2 text-m">
-                                                        <span class="text-to">{{$post['user']['email'] ?? ""}}</span>
-
                                                     </div>
+
+
                                                 </div>
-
-
+                                                <div class="pl-2">.
+                                                    <a href="#/qiongliwu/posts/27294" class="text-a">
+                                                        {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}} </a>
+                                                </div>
                                             </div>
-                                            <div class="pl-2">.
-                                                <a href="#/qiongliwu/posts/27294" class="text-a">
-                                                    {{\Carbon\Carbon::parse($post['created_at'])->diffForHumans()}} </a>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class=" el-action-s menu-icon pl-2 pr-2 rounded-circle ml-auto">
-                                            <div class="dropleft" data-toggle="tooltip"
-                                                 data-placement="top" title=""
-                                                 data-original-title="more">
+                                            <div
+                                                class=" el-action-s menu-icon pl-2 pr-2 rounded-circle ml-auto">
+                                                <div class="dropleft" data-toggle="tooltip"
+                                                     data-placement="top" title=""
+                                                     data-original-title="more">
                                                                 <span data-toggle="dropdown" aria-expanded="false">
                                                                     <svg viewBox="0 0 24 24" aria-hidden="true"
                                                                          class="blue" style="height:1.25rem;width:1.25rem; line-height: 1.65em;
@@ -312,206 +312,206 @@
                                                                         </g>
                                                                     </svg></span>
 
+                                                    <div class="dropdown-menu p-3">
+                                                        <div
+                                                            class="d-flex div-info-more-item dropdown-item">
+                                                            <div><i
+                                                                    class="fas fa-envelope fa-fw"></i>
+                                                            </div>
+                                                            <div class="ml-2">
+                                                                <a href="{{route('chat' , $post['user']['id'] ?? "")}}">
+                                                                    <span>Message - {{$post->user->name ?? ""}}</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="info-intro text-truncate" style="max-width: 500px">
+                                            <span class="text-success "></span>
+                                            {{$post->description}}
+                                        </div>
+                                        @isset($post->fileNames)
+                                            <div class="info-photo mr-3 border rounded p-1">
+                                                <div class="info-img-box ">
+                                                    @foreach(json_decode($post->fileNames) as $index => $file)
+                                                        @if (($index % 2) == 0)
+                                                            <div class="info-img-box-c">
+                                                                @endif
+                                                                <div class="info-img-content post-image" datai="0"
+                                                                     style="background-image: url('{{asset('images/owner/' . $post->user->name . '/' . $file)}}');">
+                                                                    <img draggable="false" class="css-img-p"
+                                                                         src="">
+                                                                </div>
+
+                                                                @if(($index % 2) == 0)
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+
+                                            </div>
+                                        @endisset
+
+                                        <div
+                                            class="d-flex justify-content-between p-3 div-share-likes-reply">
+                                            <div class="el-action-s el-reply p-1 pl-2 pr-2"
+                                                 data-toggle="tooltip" title="" datau=" 27294"
+                                                 data-original-title="Reply"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" class="el-action-s"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 3c5.514 0 10 3.592 10 8.007 0 4.917-5.145 7.961-9.91 7.961-1.937 0-3.383-.397-4.394-.644-1 .613-1.595 1.037-4.272 1.82.535-1.373.723-2.748.602-4.265-.838-1-2.025-2.4-2.025-4.872-.001-4.415 4.485-8.007 9.999-8.007zm0-2c-6.338 0-12 4.226-12 10.007 0 2.05.738 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 1.418.345 2.775.503 4.059.503 7.084 0 11.91-4.837 11.91-9.961-.001-5.811-5.702-10.006-12.001-10.006zm-3.5 10c0 .829-.671 1.5-1.5 1.5-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5c.829 0 1.5.671 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5c.829 0 1.5-.671 1.5-1.5s-.671-1.5-1.5-1.5zm5 0c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5c.829 0 1.5-.671 1.5-1.5s-.671-1.5-1.5-1.5z">
+                                                    </path>
+                                                </svg><span class="pl-1">1.1k</span>
+                                            </div>
+                                            <div class="el-action-s  p-1 pl-2 pr-2 " data-toggle="tooltip"
+                                                 title="" data-original-title="Relay"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    data-toggle="dropdown">
+                                                    <path
+                                                        d="M21 9h2v11h-17v3l-6-4 6-4v3h15v-9zm-18-3h15v3l6-4-6-4v3h-17v11h2v-9z">
+                                                    </path>
+                                                </svg><span class="pl-1"></span>
                                                 <div class="dropdown-menu p-3">
-                                                    <div
-                                                        class="d-flex div-info-more-item dropdown-item">
-                                                        <div><i
-                                                                class="fas fa-envelope fa-fw"></i>
-                                                        </div>
-                                                        <div class="ml-2">
-                                                            <a href="{{route('chat' , $post['user']['id'] ?? "")}}">
-                                                                <span>Message - {{$post->user->name ?? ""}}</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="info-intro text-truncate" style="max-width: 500px">
-                                        <span class="text-success "></span>
-                                        {{$post['description']}}
-                                    </div>
-                                    @isset($post['fileNames'])
-                                        <div class="info-photo mr-3 border rounded p-1">
-                                            <div class="info-img-box ">
-                                                @foreach(json_decode($post['fileNames']) as $index => $file)
-                                                    @if (($index % 2) == 0)
-                                                        <div class="info-img-box-c">
-                                                    @endif
-                                                        <div class="info-img-content post-image" datai="0"
-                                                             style="background-image: url('{{asset('images/owner/' . $post['user']['name'] . '/' . $file)}}');">
-                                                            <img draggable="false" class="css-img-p"
-                                                                 src="">
-                                                        </div>
-
-                                                    @if(($index % 2) == 0)
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                         </div>
-
-                                    </div>
-                                    @endisset
-
-                                    <div
-                                        class="d-flex justify-content-between p-3 div-share-likes-reply">
-                                        <div class="el-action-s el-reply p-1 pl-2 pr-2"
-                                             data-toggle="tooltip" title="" datau=" 27294"
-                                             data-original-title="Reply"><svg
-                                                xmlns="http://www.w3.org/2000/svg" class="el-action-s"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M12 3c5.514 0 10 3.592 10 8.007 0 4.917-5.145 7.961-9.91 7.961-1.937 0-3.383-.397-4.394-.644-1 .613-1.595 1.037-4.272 1.82.535-1.373.723-2.748.602-4.265-.838-1-2.025-2.4-2.025-4.872-.001-4.415 4.485-8.007 9.999-8.007zm0-2c-6.338 0-12 4.226-12 10.007 0 2.05.738 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 1.418.345 2.775.503 4.059.503 7.084 0 11.91-4.837 11.91-9.961-.001-5.811-5.702-10.006-12.001-10.006zm-3.5 10c0 .829-.671 1.5-1.5 1.5-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5c.829 0 1.5.671 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5c.829 0 1.5-.671 1.5-1.5s-.671-1.5-1.5-1.5zm5 0c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5c.829 0 1.5-.671 1.5-1.5s-.671-1.5-1.5-1.5z">
-                                                </path>
-                                            </svg><span class="pl-1">1.1k</span>
-                                        </div>
-                                        <div class="el-action-s  p-1 pl-2 pr-2 " data-toggle="tooltip"
-                                             title="" data-original-title="Relay"><svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                data-toggle="dropdown">
-                                                <path
-                                                    d="M21 9h2v11h-17v3l-6-4 6-4v3h15v-9zm-18-3h15v3l6-4-6-4v3h-17v11h2v-9z">
-                                                </path>
-                                            </svg><span class="pl-1"></span>
-                                            <div class="dropdown-menu p-3">
-                                                <div class="d-flex div-info-more-item dropdown-item el-relay"
-                                                     datau="27294">
-                                                    <div><svg xmlns="http://www.w3.org/2000/svg"
-                                                              width="20" height="20" viewBox="0 0 24 24"
-                                                              fill="#858796">
-                                                            <path
-                                                                d="M21 9h2v11h-17v3l-6-4 6-4v3h15v-9zm-18-3h15v3l6-4-6-4v3h-17v11h2v-9z">
-                                                            </path>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="ml-2"><span>Relay</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="el-action-s  p-1 pl-2 pr-2 " data-toggle="tooltip"
-                                             title="" data-original-title="Chat"><svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 576 512">
-                                                <path
-                                                    d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1 .9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9 .7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" />
-                                            </svg>
-                                            <a href="{{route('chat' , $post['user']['id'] ?? "")}}">
-                                                <span class="pl-1">Connect</span>
-                                            </a>
-                                            <div class="dropdown-menu p-3">
-                                                <div class="d-flex div-info-more-item dropdown-item el-Chat"
-                                                     datau="27294">
-                                                    <div><svg xmlns="http://www.w3.org/2000/svg"
-                                                              viewBox="0 0 576 512">
-                                                            <path
-                                                                d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1 .9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9 .7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="ml-2"><span>Chat</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="el-action-s  p-1 pl-2 pr-2" data-toggle="tooltip"
-                                             title="" data-original-title="Share"><svg
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                data-toggle="dropdown">
-                                                <path
-                                                    d="M6 2c.552 0 1 .449 1 1s-.448 1-1 1-1-.449-1-1 .448-1 1-1zm15 9c.552 0 1 .448 1 1s-.448 1-1 1-1-.449-1-1c0-.552.448-1 1-1zm-15 9c.552 0 1 .449 1 1s-.448 1-1 1-1-.449-1-1 .448-1 1-1zm0-20c-1.656 0-3 1.343-3 3s1.344 3 3 3 3-1.343 3-3-1.344-3-3-3zm15 9c-1.656 0-3 1.343-3 3s1.344 3 3 3 3-1.343 3-3-1.344-3-3-3zm-15 9c-1.657 0-3 1.343-3 3s1.343 3 3 3c1.656 0 3-1.343 3-3s-1.344-3-3-3zm4.588-16.979l.412-.021c4.281 0 7.981 2.45 9.8 6.021-.717.029-1.39.21-1.998.511-1.555-2.703-4.466-4.532-7.802-4.532 0-.703-.149-1.372-.412-1.979zm10.212 15.958c-1.819 3.571-5.519 6.021-9.8 6.021l-.412-.021c.263-.607.412-1.276.412-1.979 3.336 0 6.247-1.829 7.802-4.532.608.302 1.281.483 1.998.511zm-18.91 1.186c-1.193-1.759-1.89-3.88-1.89-6.165s.697-4.406 1.89-6.165c.392.566.901 1.039 1.487 1.403-.867 1.383-1.377 3.012-1.377 4.762s.51 3.379 1.377 4.762c-.586.364-1.096.837-1.487 1.403z">
-                                                </path>
-                                            </svg><span class="pl-1">1.1k</span>
-                                            <div class="dropdown-menu p-3 shadow dropdown-menu-right ">
-                                                <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
-                                                     datau="27294">
-                                                    <div><svg viewBox="0 0 24 24" aria-hidden="true">
-                                                            <g>
+                                                    <div class="d-flex div-info-more-item dropdown-item el-relay"
+                                                         datau="27294">
+                                                        <div><svg xmlns="http://www.w3.org/2000/svg"
+                                                                  width="20" height="20" viewBox="0 0 24 24"
+                                                                  fill="#858796">
                                                                 <path
-                                                                    d="M19.25 3.018H4.75C3.233 3.018 2 4.252 2 5.77v12.495c0 1.518 1.233 2.753 2.75 2.753h14.5c1.517 0 2.75-1.235 2.75-2.753V5.77c0-1.518-1.233-2.752-2.75-2.752zm-14.5 1.5h14.5c.69 0 1.25.56 1.25 1.25v.714l-8.05 5.367c-.273.18-.626.182-.9-.002L3.5 6.482v-.714c0-.69.56-1.25 1.25-1.25zm14.5 14.998H4.75c-.69 0-1.25-.56-1.25-1.25V8.24l7.24 4.83c.383.256.822.384 1.26.384.44 0 .877-.128 1.26-.383l7.24-4.83v10.022c0 .69-.56 1.25-1.25 1.25z">
+                                                                    d="M21 9h2v11h-17v3l-6-4 6-4v3h15v-9zm-18-3h15v3l6-4-6-4v3h-17v11h2v-9z">
                                                                 </path>
-                                                            </g>
-                                                        </svg>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Relay</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2"><span>Send via Direct
+                                                </div>
+                                            </div>
+                                            <div class="el-action-s  p-1 pl-2 pr-2 " data-toggle="tooltip"
+                                                 title="" data-original-title="Chat"><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 576 512">
+                                                    <path
+                                                        d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1 .9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9 .7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" />
+                                                </svg>
+                                                <a href="{{route('chat' , $post->user->id ?? "")}}">
+                                                    <span class="pl-1">Connect</span>
+                                                </a>
+                                                <div class="dropdown-menu p-3">
+                                                    <div class="d-flex div-info-more-item dropdown-item el-Chat"
+                                                         datau="27294">
+                                                        <div><svg xmlns="http://www.w3.org/2000/svg"
+                                                                  viewBox="0 0 576 512">
+                                                                <path
+                                                                    d="M416 192c0-88.4-93.1-160-208-160S0 103.6 0 192c0 34.3 14.1 65.9 38 92-13.4 30.2-35.5 54.2-35.8 54.5-2.2 2.3-2.8 5.7-1.5 8.7S4.8 352 8 352c36.6 0 66.9-12.3 88.7-25 32.2 15.7 70.3 25 111.3 25 114.9 0 208-71.6 208-160zm122 220c23.9-26 38-57.7 38-92 0-66.9-53.5-124.2-129.3-148.1 .9 6.6 1.3 13.3 1.3 20.1 0 105.9-107.7 192-240 192-10.8 0-21.3-.8-31.7-1.9C207.8 439.6 281.8 480 368 480c41 0 79.1-9.2 111.3-25 21.8 12.7 52.1 25 88.7 25 3.2 0 6.1-1.9 7.3-4.8 1.3-2.9 .7-6.3-1.5-8.7-.3-.3-22.4-24.2-35.8-54.5z" />
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Chat</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="el-action-s  p-1 pl-2 pr-2" data-toggle="tooltip"
+                                                 title="" data-original-title="Share"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    data-toggle="dropdown">
+                                                    <path
+                                                        d="M6 2c.552 0 1 .449 1 1s-.448 1-1 1-1-.449-1-1 .448-1 1-1zm15 9c.552 0 1 .448 1 1s-.448 1-1 1-1-.449-1-1c0-.552.448-1 1-1zm-15 9c.552 0 1 .449 1 1s-.448 1-1 1-1-.449-1-1 .448-1 1-1zm0-20c-1.656 0-3 1.343-3 3s1.344 3 3 3 3-1.343 3-3-1.344-3-3-3zm15 9c-1.656 0-3 1.343-3 3s1.344 3 3 3 3-1.343 3-3-1.344-3-3-3zm-15 9c-1.657 0-3 1.343-3 3s1.343 3 3 3c1.656 0 3-1.343 3-3s-1.344-3-3-3zm4.588-16.979l.412-.021c4.281 0 7.981 2.45 9.8 6.021-.717.029-1.39.21-1.998.511-1.555-2.703-4.466-4.532-7.802-4.532 0-.703-.149-1.372-.412-1.979zm10.212 15.958c-1.819 3.571-5.519 6.021-9.8 6.021l-.412-.021c.263-.607.412-1.276.412-1.979 3.336 0 6.247-1.829 7.802-4.532.608.302 1.281.483 1.998.511zm-18.91 1.186c-1.193-1.759-1.89-3.88-1.89-6.165s.697-4.406 1.89-6.165c.392.566.901 1.039 1.487 1.403-.867 1.383-1.377 3.012-1.377 4.762s.51 3.379 1.377 4.762c-.586.364-1.096.837-1.487 1.403z">
+                                                    </path>
+                                                </svg><span class="pl-1">1.1k</span>
+                                                <div class="dropdown-menu p-3 shadow dropdown-menu-right ">
+                                                    <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
+                                                         datau="27294">
+                                                        <div><svg viewBox="0 0 24 24" aria-hidden="true">
+                                                                <g>
+                                                                    <path
+                                                                        d="M19.25 3.018H4.75C3.233 3.018 2 4.252 2 5.77v12.495c0 1.518 1.233 2.753 2.75 2.753h14.5c1.517 0 2.75-1.235 2.75-2.753V5.77c0-1.518-1.233-2.752-2.75-2.752zm-14.5 1.5h14.5c.69 0 1.25.56 1.25 1.25v.714l-8.05 5.367c-.273.18-.626.182-.9-.002L3.5 6.482v-.714c0-.69.56-1.25 1.25-1.25zm14.5 14.998H4.75c-.69 0-1.25-.56-1.25-1.25V8.24l7.24 4.83c.383.256.822.384 1.26.384.44 0 .877-.128 1.26-.383l7.24-4.83v10.022c0 .69-.56 1.25-1.25 1.25z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Send via Direct
                                                                             Message</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex div-info-more-item dropdown-item el-bookmarks"
-                                                     datau="27294">
-                                                    <div><svg viewBox="0 0 24 24" aria-hidden="true">
-                                                            <g>
-                                                                <path
-                                                                    d="M23.074 3.35H20.65V.927c0-.414-.337-.75-.75-.75s-.75.336-.75.75V3.35h-2.426c-.414 0-.75.337-.75.75s.336.75.75.75h2.425v2.426c0 .414.335.75.75.75s.75-.336.75-.75V4.85h2.424c.414 0 .75-.335.75-.75s-.336-.75-.75-.75zM19.9 10.744c-.415 0-.75.336-.75.75v9.782l-6.71-4.883c-.13-.095-.285-.143-.44-.143s-.31.048-.44.144l-6.71 4.883V5.6c0-.412.337-.75.75-.75h6.902c.414 0 .75-.335.75-.75s-.336-.75-.75-.75h-6.9c-1.242 0-2.25 1.01-2.25 2.25v17.15c0 .282.157.54.41.668.25.13.553.104.78-.062L12 17.928l7.458 5.43c.13.094.286.143.44.143.117 0 .234-.026.34-.08.252-.13.41-.387.41-.67V11.495c0-.414-.335-.75-.75-.75z">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="ml-2"><span>Add posts to
+                                                    <div class="d-flex div-info-more-item dropdown-item el-bookmarks"
+                                                         datau="27294">
+                                                        <div><svg viewBox="0 0 24 24" aria-hidden="true">
+                                                                <g>
+                                                                    <path
+                                                                        d="M23.074 3.35H20.65V.927c0-.414-.337-.75-.75-.75s-.75.336-.75.75V3.35h-2.426c-.414 0-.75.337-.75.75s.336.75.75.75h2.425v2.426c0 .414.335.75.75.75s.75-.336.75-.75V4.85h2.424c.414 0 .75-.335.75-.75s-.336-.75-.75-.75zM19.9 10.744c-.415 0-.75.336-.75.75v9.782l-6.71-4.883c-.13-.095-.285-.143-.44-.143s-.31.048-.44.144l-6.71 4.883V5.6c0-.412.337-.75.75-.75h6.902c.414 0 .75-.335.75-.75s-.336-.75-.75-.75h-6.9c-1.242 0-2.25 1.01-2.25 2.25v17.15c0 .282.157.54.41.668.25.13.553.104.78-.062L12 17.928l7.458 5.43c.13.094.286.143.44.143.117 0 .234-.026.34-.08.252-.13.41-.387.41-.67V11.495c0-.414-.335-.75-.75-.75z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Add posts to
                                                                             Bookmarks</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
-                                                     datau="27294">
-                                                    <div><svg viewBox="0 0 24 24" aria-hidden="true">
-                                                            <g>
-                                                                <path
-                                                                    d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z">
-                                                                </path>
-                                                                <path
-                                                                    d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
+                                                    <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
+                                                         datau="27294">
+                                                        <div><svg viewBox="0 0 24 24" aria-hidden="true">
+                                                                <g>
+                                                                    <path
+                                                                        d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Copy link </span>
+                                                        </div>
                                                     </div>
-                                                    <div class="ml-2"><span>Copy link </span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
-                                                     datau="27294">
-                                                    <div>
-                                                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                                                            <g>
-                                                                <path
-                                                                    d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z">
-                                                                </path>
-                                                                <path
-                                                                    d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z">
-                                                                </path>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="ml-2"><span>Share posts via …</span>
+                                                    <div class="d-flex div-info-more-item dropdown-item el-sendmsg"
+                                                         datau="27294">
+                                                        <div>
+                                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                                <g>
+                                                                    <path
+                                                                        d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="ml-2"><span>Share posts via …</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+
+                                            <div class="el-action-s el-likes p-1 pl-2 pr-2" datau="27294">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                     data-toggle="tooltip" title=""
+                                                     class="rounded-circle p-1" data-original-title="Like">
+                                                    <path
+                                                        d="M15.43 8.814c.808-3.283 1.252-8.814-2.197-8.814-1.861 0-2.35 1.668-2.833 3.329-1.971 6.788-5.314 7.342-8.4 7.743v9.928c3.503 0 5.584.729 8.169 1.842 1.257.541 3.053 1.158 5.336 1.158 2.538 0 4.295-.997 5.009-3.686.5-1.877 1.486-7.25 1.486-8.25 0-1.649-1.168-2.446-2.594-2.507-1.21-.051-2.87-.277-3.976-.743zm3.718 4.321l-1.394.167s-.609 1.109.141 1.115c0 0 .201.01 1.069-.027 1.082-.046 1.051 1.469.004 1.563l-1.761.099c-.734.094-.656 1.203.141 1.172 0 0 .686-.017 1.143-.041 1.068-.056 1.016 1.429.04 1.551-.424.053-1.745.115-1.745.115-.811.072-.706 1.235.109 1.141l.771-.031c.822-.074 1.003.825-.292 1.661-1.567.881-4.685.131-6.416-.614-2.238-.965-4.437-1.934-6.958-2.006v-6c3.263-.749 6.329-2.254 8.321-9.113.898-3.092 1.679-1.931 1.679.574 0 2.071-.49 3.786-.921 5.533 1.061.543 3.371 1.402 6.12 1.556 1.055.059 1.025 1.455-.051 1.585z">
+                                                    </path>
+                                                </svg><span class="pl-1"></span>
+                                            </div>
+
+
+
                                         </div>
-
-
-                                        <div class="el-action-s el-likes p-1 pl-2 pr-2" datau="27294">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                 data-toggle="tooltip" title=""
-                                                 class="rounded-circle p-1" data-original-title="Like">
-                                                <path
-                                                    d="M15.43 8.814c.808-3.283 1.252-8.814-2.197-8.814-1.861 0-2.35 1.668-2.833 3.329-1.971 6.788-5.314 7.342-8.4 7.743v9.928c3.503 0 5.584.729 8.169 1.842 1.257.541 3.053 1.158 5.336 1.158 2.538 0 4.295-.997 5.009-3.686.5-1.877 1.486-7.25 1.486-8.25 0-1.649-1.168-2.446-2.594-2.507-1.21-.051-2.87-.277-3.976-.743zm3.718 4.321l-1.394.167s-.609 1.109.141 1.115c0 0 .201.01 1.069-.027 1.082-.046 1.051 1.469.004 1.563l-1.761.099c-.734.094-.656 1.203.141 1.172 0 0 .686-.017 1.143-.041 1.068-.056 1.016 1.429.04 1.551-.424.053-1.745.115-1.745.115-.811.072-.706 1.235.109 1.141l.771-.031c.822-.074 1.003.825-.292 1.661-1.567.881-4.685.131-6.416-.614-2.238-.965-4.437-1.934-6.958-2.006v-6c3.263-.749 6.329-2.254 8.321-9.113.898-3.092 1.679-1.931 1.679.574 0 2.071-.49 3.786-.921 5.533 1.061.543 3.371 1.402 6.12 1.556 1.055.059 1.025 1.455-.051 1.585z">
-                                                </path>
-                                            </svg><span class="pl-1"></span>
-                                        </div>
-
-
 
                                     </div>
-
                                 </div>
-                            </div>
-                        </article>
+                            </article>
 
 
-                    </li>
+                        </li>
                     @endforeach
 
 
@@ -522,23 +522,28 @@
             </div>
 
 
-{{--            <div class="d-flex  justify-content-center m-3 pageslist">--}}
-{{--                <div class="mr-5">--}}
-{{--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="disabled">--}}
-{{--                        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z">--}}
-{{--                        </path>--}}
-{{--                    </svg>--}}
-{{--                </div>--}}
-{{--                <div class="ml-5">--}}
-{{--                    <a href="?page=2">--}}
-{{--                        <svg xmlns="http://www.w3.org/2000/svg" data-toggle="tooltip" title=""--}}
-{{--                             viewBox="0 0 24 24" data-original-title="Next Page">--}}
-{{--                            <path--}}
-{{--                                d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z">--}}
-{{--                            </path>--}}
-{{--                        </svg></a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            {{--            <div class="d-flex  justify-content-center m-3 pageslist">--}}
+            {{--                <div class="mr-5">--}}
+            {{--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="disabled">--}}
+            {{--                        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z">--}}
+            {{--                        </path>--}}
+            {{--                    </svg>--}}
+            {{--                </div>--}}
+            {{--                <div class="ml-5">--}}
+            {{--                    <a href="?page=2">--}}
+            {{--                        <svg xmlns="http://www.w3.org/2000/svg" data-toggle="tooltip" title=""--}}
+            {{--                             viewBox="0 0 24 24" data-original-title="Next Page">--}}
+            {{--                            <path--}}
+            {{--                                d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z">--}}
+            {{--                            </path>--}}
+            {{--                        </svg></a>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
+            <div class="d-flex  justify-content-center m-3 pageslist">
+                <nav aria-label="Page navigation example">
+                    {{ $posts->links() }}
+                </nav>
+            </div>
 
         </div>
         <div class="col-lg-4 mb-4 pr-0">

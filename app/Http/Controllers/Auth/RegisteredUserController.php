@@ -37,8 +37,10 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        $photoName = ImageHelpers::saveImage($request->image , "images/$request->name");
+        $photoName = "";
+        if (isset($request->image)) {
+            $photoName = ImageHelpers::saveImage($request->image, "images/$request->name");
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -52,6 +54,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', absolute: false));
     }
 }
