@@ -5,7 +5,7 @@
         <form
             class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 md-md-noney-md-0 mw-100 navbar-search">
             <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                            placeholder="Add New Post ...">
+                                            placeholderp ="Add New Post ...">
                 <div class="input-group-append m-auto"><a class="btn btn-primary py-0" href="{{route('admin.create-post')}}" type="button"><i
                             class="fas fa-plus"></i></a></div>
             </div>
