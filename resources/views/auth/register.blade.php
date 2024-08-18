@@ -16,15 +16,15 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="mt-4">
-            <label for="role">{{ __('role') }}</label>
-            <select id="role" name="role" class="block mt-1 w-full" required>
-                <option value="" disabled selected>{{ __('Select Role') }}</option>
-                <option value="owner">Owner</option>
-                <option value="tenant">Tenants</option>
-            </select>
-            <x-input-error :messages="$errors->get('role')" class="mt-2" />
-        </div>
+{{--        <div class="mt-4">--}}
+{{--            <label for="role">{{ __('role') }}</label>--}}
+{{--            <select id="role" name="role" class="block mt-1 w-full" required>--}}
+{{--                <option value="" disabled selected>{{ __('Select Role') }}</option>--}}
+{{--                <option value="owner">Owner</option>--}}
+{{--                <option value="tenant">Tenants</option>--}}
+{{--            </select>--}}
+{{--            <x-input-error :messages="$errors->get('role')" class="mt-2" />--}}
+{{--        </div>--}}
 
 
         <!-- Password -->

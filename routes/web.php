@@ -23,9 +23,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'admin' , "as" => "admin." , "middleware" => "auth"] , function (){
-   Route::get("create-post" , [PostController::class , "create"])->name("create-post");
-   Route::post("store-owner-post" , [PostController::class , "storeOwnerPost"])->name("store-owner-post");
-   Route::post("store-tenants-post" , [PostController::class , "storeTenantPost"])->name("store-tenants-post");
+   Route::get("create-owner-post" , [PostController::class , "createOwnerPost"])->name("create-owner-post");
+   Route::get("create-tenant-post" , [PostController::class , "createTenantPost"])->name("create-tenant-post");
+   Route::post("store-post" , [PostController::class , "storePost"])->name("store-post");
    Route::get("delete-post/{id}" , [PostController::class , "deletePost"])->name("delete-post")->middleware('CheckPermission');
 });
+Route::get("posts-search/{search}" , [PostController::class , "PostsSearch"])->name("posts-search");
 require __DIR__.'/auth.php';

@@ -4,10 +4,10 @@
                                                                                                                        class="d-md-none" style="font-size:1.1rem;color:blue;font-weight:700">Merchant Face</span>
         <form
             class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 md-md-noney-md-0 mw-100 navbar-search">
-            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                            placeholderp ="Add New Post ...">
-                <div class="input-group-append m-auto"><a class="btn btn-primary py-0" href="{{route('admin.create-post')}}" type="button"><i
-                            class="fas fa-plus"></i></a></div>
+            <div class="input-group"><input class="bg-light form-control border-0 small search-value" type="text"
+                                            placeholder="Search for ...">
+                <div class="input-group-append"><button class="btn btn-primary py-0" id="search-button" type="button"><i
+                            class="fas fa-search"></i></button></div>
             </div>
         </form>
         <ul class="nav navbar-nav flex-nowrap ml-auto">

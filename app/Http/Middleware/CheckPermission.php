@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\OnwerPost;
+use App\Models\Post;
 use App\Models\TenantPost;
 use Closure;
 use Illuminate\Http\Request;
@@ -19,12 +20,7 @@ class CheckPermission
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if ($user->role == "owner"){
-            $post = OnwerPost::findOrFail($request->id);
-        }
-        else if ($user->role == "tenant"){
-            $post = TenantPost::findOrFail($request->id);
-        }
+        $post = Post::findOrFail($request->id);
         if (Auth::check() && (($post->user_id == $user->id) || ($user->role == "SuperAdmin"))) {
             return $next($request);
         }

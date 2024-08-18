@@ -260,10 +260,10 @@
                 }
             </style>
             <div class="info-list">
-                <ul class="list-group">
+                <ul class="list-group posts">
 
                     @foreach($posts as $post)
-                        <li class="list-group-item w-50">
+                        <li class="list-group-item">
                             <article href="/qiongliwu/posts/27294">
                                 <div class="d-inline-flex" style="width:100%"> <a href="#/qiongliwu">
                                         <div class="info_author_photo pl-2 pt-2"><img
@@ -335,7 +335,7 @@
                                             <span class="text-success "></span>
                                             {{$post->description}}
                                         </div>
-                                        @isset($post->fileNames)
+                                        @if(isset($post->fileNames) && $post->fileNames != "")
                                             <div class="info-photo mr-3 border rounded p-1">
                                                 <div class="info-img-box ">
                                                     @foreach(json_decode($post->fileNames) as $index => $file)
@@ -355,7 +355,7 @@
                                                 </div>
 
                                             </div>
-                                        @endisset
+                                        @endif
 
                                         <div
                                             class="d-flex justify-content-between p-3 div-share-likes-reply">

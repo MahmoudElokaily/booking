@@ -23,6 +23,7 @@
     <script src="{{asset('assets/js/bootstrap-msg.js.download')}}"></script>
 
     <script src="{{asset('assets/js/bootbox.min.js.download')}}"></script>
+    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
     <style type="text/css">
         body,
         body.swal2-shown,
@@ -188,7 +189,17 @@
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+        $("#search-button").click(function (){
+            var search = $(".search-value").val();
 
+            // Construct the URL with the search query
+            var url = '/posts-search/' + encodeURIComponent(search);
+
+            // Navigate to the constructed URL
+            window.location.href = url;
+        });
+    </script>
 </body>
 
 </html>

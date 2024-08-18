@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string("photo")->nullable();
-            $table->string("role");
+            $table->string("role")->nullable();
         });
     }
 
@@ -22,8 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('photo');
+        Schema::dropIfExists('role');
     }
 };

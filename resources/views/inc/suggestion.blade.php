@@ -38,10 +38,10 @@ user module -->
                                         <div> <span class="small"> </span></div>
                                     </div>
                                     <div class="ml-auto">
-                                        <button type="button"
+                                        <a type="button" href="{{route('chat' , $user->id ?? "")}}"
                                                 class="btn btn-outline-primary rounded-pill font-weight-bold btn-sm follow-btn"
                                                 dataf="user"
-                                                datau="amyzhang1zzfiltech">Connect</button>
+                                                datau="amyzhang1zzfiltech">Connect</a>
                                     </div>
                                 </div>
                                 <div><span>{{$user->email}}</span></div>

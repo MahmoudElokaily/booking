@@ -24,12 +24,6 @@
             @endauth
             <li class="nav-item"><a class="nav-link v-nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-cogs"></i><span>Dashboard</span></a>
-            <li class="nav-item"><a class="nav-link v-nav-link" href="{{route('admin.create-post')}}">
-                                <i class="fas fa-plus"></i><span>Add Post</span></a>
-
-
-                <hr class="sidebar-divider">
-            </li>
         </ul>
     </div>
 </nav>

@@ -47,10 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function OnwerPosts() {
-        return $this->hasMany(OnwerPost::class);
-    }
-    public function TenantPosts() {
-        return $this->hasMany(TenantPost::class);
+    public function posts() {
+        return $this->hasMany(Post::class);
     }
 }

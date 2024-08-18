@@ -12,7 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <link href="{{asset("bootstrap/css/bootstrap.min.css")}}" rel="stylesheet" />
-
+        <link href="{{asset("bootstrap/css/dataTables.bootstrap5.css")}}" rel="stylesheet" />
+        <link href="{{asset('DataTables/datatables.min.css')}}" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -34,6 +35,9 @@
                 {{ $slot }}
             </main>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('DataTables/datatables.min.js')}}"></script>
+        @stack('js')
     </body>
 </html>
