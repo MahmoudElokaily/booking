@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-msg.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
 
-    <script src="{{ asset('assets/js/jquery-1.11.3.min.js.download') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js.download') }}"></script>
-    <script src="{{ asset('assets/js/jquery.easing.js.download') }}"></script>
-    <script src="{{ asset('assets/js/theme.js.download') }}"></script>
-    <script src="{{ asset('assets/js/viewer-jquery.min.js.download') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap-msg.js.download') }}"></script>
+    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.easing.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{ asset('assets/js/viewer-jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-msg.js') }}"></script>
 
-    <script src="{{ asset('assets/js/bootbox.min.js.download') }}"></script>
+    <script src="{{ asset('assets/js/bootbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <style type="text/css">
         body,
