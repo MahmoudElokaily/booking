@@ -256,14 +256,20 @@
         </div>
     </div>
     <script type="text/javascript">
+
         $("#search-button").click(function() {
+
+
             var search = $(".search-value").val();
 
+            if(search!="" )
+            {
             // Construct the URL with the search query
             var url = '/posts-search/' + encodeURIComponent(search);
 
             // Navigate to the constructed URL
             window.location.href = url;
+            }
         });
     </script>
     <script type="text/javascript">
