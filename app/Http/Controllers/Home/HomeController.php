@@ -17,12 +17,12 @@ class HomeController extends Controller
     }
     public function ownerPosts() {
         $data['title'] = __("Owner posts");
-        $data['posts'] = Post::with('user')->where('fileNames' , '!=' , "")->paginate(4);
+        $data['posts'] = Post::with('user')->whereNotNull('fileNames')->paginate(4);
         return view('pages.owner-posts' , $data);
     }
     public function tenantPosts() {
         $data['title'] = __("Tenant posts");
-        $data['posts'] = Post::with('user')->where('fileNames' , "")->paginate(6);
+        $data['posts'] = Post::with('user')->whereNull('fileNames')->paginate(6);
         return view('pages.tenant-posts' , $data);
     }
 }

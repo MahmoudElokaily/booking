@@ -25,7 +25,7 @@ class PostController extends Controller
         $request->validate([
             "description" => "required",
         ]);
-        $fileNames = "";
+        $fileNames = NULL;
         $imagesName = [];
         if (isset($request->images)) {
             foreach ($request->images as $image) {
@@ -35,7 +35,7 @@ class PostController extends Controller
             }
             $fileNames = json_encode($imagesName);
         }
-        Post::create([
+       Post::create([
             'description'   => $request->description,
             'user_id'       => Auth::id(),
             'fileNames'     => $fileNames
