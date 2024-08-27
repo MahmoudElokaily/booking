@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $photoName = "";
+        $photoName = null;
         if (isset($request->image)) {
             $photoName = ImageHelpers::saveImage($request->image, "images/$request->name");
         }
