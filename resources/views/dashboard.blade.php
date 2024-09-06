@@ -21,8 +21,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a type="button" href="{{route("admin.create-owner-post")}}" class="btn btn-dark btn-lg m-3">Add Owner Post</a>
-                    <a type="button" href="{{route("admin.create-tenant-post")}}" class="btn btn-dark btn-lg m-3">Add tenant Post</a>
+                    <a type="button" href="{{route("admin.create-owner-post")}}" class="btn btn-dark btn-lg m-3">Add Looking</a>
+                    <a type="button" href="{{route("admin.create-tenant-post")}}" class="btn btn-dark btn-lg m-3">Add Offer</a>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
     <div class="py-12">
         @php
             $user = \Illuminate\Support\Facades\Auth::user();
-            $posts = $user->posts;
+            $posts = $user->posts()->orderBy('created_at', 'desc')->get();
         @endphp
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <table class="table table-bordered">
