@@ -335,27 +335,55 @@
                                         <span class="text-success "></span>
                                         {{$post['description']}}
                                     </div>
-                                    @if( isset($post['fileNames']) && $post['fileNames'] != "")
-                                        <div class="info-photo mr-3 border rounded p-1">
-                                            <div class="info-img-box ">
+                                    @if(isset($post['fileNames']) && $post['fileNames'] != "")
+                                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
                                                 @foreach(json_decode($post['fileNames']) as $index => $file)
-                                                    @if (($index % 2) == 0)
-                                                        <div class="info-img-box-c">
-                                                    @endif
-                                                        <div class="info-img-content post-image" datai="0"
-                                                             style="background-image: url('{{asset('images/owner/' . $post['user']['name'] . '/' . $file)}}');">
-                                                            <img draggable="false" class="css-img-p"
-                                                                 src="">
-                                                        </div>
-
-                                                    @if(($index % 2) == 0)
-                                                        </div>
-                                                    @endif
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
                                                 @endforeach
-                                         </div>
-
-                                    </div>
+                                            </ol>
+                                            <div class="carousel-inner">
+                                                @foreach(json_decode($post['fileNames']) as $index => $file)
+                                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                        <img class="d-block w-100"
+                                                             src="{{ asset('images/owner/' . $post['user']['name'] . '/' . $file) }}"
+                                                             alt="image">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+{{--                                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--}}
+{{--                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--                                                <span class="sr-only">Previous</span>--}}
+{{--                                            </a>--}}
+{{--                                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--}}
+{{--                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--                                                <span class="sr-only">Next</span>--}}
+{{--                                            </a>--}}
+                                        </div>
                                     @endif
+
+
+                                    {{--                                    @if( isset($post['fileNames']) && $post['fileNames'] != "")--}}
+{{--                                        <div class="info-photo mr-3 border rounded p-1">--}}
+{{--                                            <div class="info-img-box ">--}}
+{{--                                                @foreach(json_decode($post['fileNames']) as $index => $file)--}}
+{{--                                                    @if (($index % 2) == 0)--}}
+{{--                                                        <div class="info-img-box-c">--}}
+{{--                                                    @endif--}}
+{{--                                                        <div class="info-img-content post-image" datai="0"--}}
+{{--                                                             style="background-image: url('{{asset('images/owner/' . $post['user']['name'] . '/' . $file)}}');">--}}
+{{--                                                            <img draggable="false" class="css-img-p"--}}
+{{--                                                                 src="">--}}
+{{--                                                        </div>--}}
+
+{{--                                                    @if(($index % 2) == 0)--}}
+{{--                                                        </div>--}}
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+{{--                                         </div>--}}
+
+{{--                                    </div>--}}
+{{--                                    @endif--}}
                                     <div
                                         class="d-flex justify-content-between p-3 div-share-likes-reply">
                                         <div class="el-action-s el-reply p-1 pl-2 pr-2"
