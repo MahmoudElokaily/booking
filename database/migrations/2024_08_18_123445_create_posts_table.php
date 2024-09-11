@@ -16,6 +16,10 @@ return new class extends Migration
             $table->text("description");
             $table->json("fileNames")->nullable();
             $table->integer("user_id");
+            $table->integer("Room")->nullable();
+            $table->integer("Bathroom")->nullable();
+            $table->integer("Price")->nullable();
+            $table->text("city")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -221,7 +221,7 @@
 
     <div class="row v-body">
 
-        <div class="col-lg-8 col-md-12 border-right p-0">
+        <div class="col-lg-12 col-md-12 border-right p-0">
 
             <style type="text/css">
                 .info-img-box {
@@ -344,8 +344,7 @@
                                                                 @endif
                                                                 <div class="info-img-content post-image" datai="0"
                                                                      style="background-image: url('{{asset('images/owner/' . $post->user->name . '/' . $file)}}');">
-                                                                    <img draggable="false" class="css-img-p"
-                                                                         src="">
+
                                                                 </div>
 
                                                                 @if(($index % 2) == 0)
@@ -561,7 +560,6 @@
                     background-color: #dcdfe9
                 }
             </style>
-            @include('inc.suggestion')
 
         </div>
     </div>

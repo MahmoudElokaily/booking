@@ -33,6 +33,34 @@
         }
     </style>
     <style type="text/css">
+        .prevbtn,
+        .nextbtn {
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .nextbtn {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prevbtn:hover,
+        .nextbtn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
         .info-img-box {
             width: 100%;
             margin: 0 auto;
@@ -96,6 +124,8 @@
                 {{-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div> --}}
+                <a class="prevbtn">❮</a>
+                <a class="nextbtn">❯</a>
             </div>
         </div>
     </div>
@@ -256,23 +286,30 @@
         </div>
     </div>
     <script type="text/javascript">
-
         $("#search-button").click(function() {
 
 
             var search = $(".search-value").val();
 
-            if(search!="" )
-            {
-            // Construct the URL with the search query
-            var url = '/posts-search/' + encodeURIComponent(search);
+            if (search != "") {
+                // Construct the URL with the search query
+                var url = '/posts-search/' + encodeURIComponent(search);
 
-            // Navigate to the constructed URL
-            window.location.href = url;
+                // Navigate to the constructed URL
+                window.location.href = url;
             }
         });
     </script>
     <script type="text/javascript">
+        var elementimg;
+
+        function plusSlides(index, element) {
+
+            console.log(index);
+            console.log($(elementimg).parent().parent());
+            console.log($(elementimg).next());
+            console.log($(elementimg).prev());
+        }
         $(document).ready(function() {
             $(".post-image").click(function() {
 
@@ -281,9 +318,44 @@
 
                 //      $('#imgshowModal').modal('show');
 
-
+                elementimg = this;
                 $("#img01").attr("src", $(this).css('background-image').replace('url(', '').replace(')', '')
                     .replace(/\"/gi, ""));
+
+
+
+
+            });
+
+
+
+            $(".prevbtn").click(function() {
+
+
+
+                if ($(elementimg).prev()[0] != null) {
+                    $("#img01").attr("src", $(elementimg).prev().css('background-image').replace('url(', '')
+                        .replace(')', '').replace(/\"/gi, ""));
+
+                    elementimg = $(elementimg).prev()[0];
+                }
+                //  plusSlides(1,this);
+
+            });
+
+            $(".nextbtn").click(function() {
+
+
+
+
+
+                if ($(elementimg).next()[0] != null) {
+                    $("#img01").attr("src", $(elementimg).next().css('background-image').replace('url(', '')
+                        .replace(')', '').replace(/\"/gi, ""));
+
+                    elementimg = $(elementimg).next()[0];
+                }
+                //  plusSlides(1,this);
 
             });
 
@@ -291,12 +363,9 @@
 
 
 
-                if($( "#main-left-nav" ).hasClass( "d-none"))
-                {
+                if ($("#main-left-nav").hasClass("d-none")) {
                     $("#main-left-nav").removeClass("d-none")
-                }
-                else
-                {
+                } else {
                     $("#main-left-nav").addClass("d-none");
                 }
 

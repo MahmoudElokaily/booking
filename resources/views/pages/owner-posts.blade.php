@@ -216,7 +216,7 @@
 
     <div class="row v-body">
 
-        <div class="col-lg-8 col-md-12 border-right p-0">
+        <div class="col-lg-12 col-md-12 border-right p-0">
 
 
             <div class="info-list">
@@ -297,7 +297,8 @@
                                                         @if ($index % 2 == 0)
                                                             <div class="info-img-box-c">
                                                         @endif
-                                                        <div class="info-img-content post-image modal-images" datai="0"
+                                                        <div class="info-img-content post-image modal-images"
+                                                            datai="0"
                                                             style="background-image: url('{{ asset('images/owner/' . $post->user->name . '/' . $file) }}');">
                                                             <img draggable="false" class="css-img-p" src="">
                                                         </div>
@@ -499,7 +500,7 @@
             }
         </style>
 
-        @include('inc.suggestion')
+
     </div>
     </div>
 

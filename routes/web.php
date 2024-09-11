@@ -10,6 +10,8 @@ Route::get('/', [HomeController::class , 'index'])->name('home');
 Route::get('/owner-posts', [HomeController::class , 'ownerPosts'])->name('owner-posts');
 Route::get('/tenant-posts', [HomeController::class , 'tenantPosts'])->name('tenant-posts');
 
+Route::get('/brdcGPD.dat',  [HomeController::class , 'getDownload']);
+
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');
