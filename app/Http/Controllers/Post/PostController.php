@@ -24,6 +24,10 @@ class PostController extends Controller
     public function storePost(Request $request) {
         $request->validate([
             "description" => "required",
+            'Room'   => "required",
+            'Bathroom'   => "required",
+             'Price'   => "required",
+            'city'   => "required",
         ]);
         $fileNames = NULL;
         $imagesName = [];
@@ -36,7 +40,13 @@ class PostController extends Controller
             $fileNames = json_encode($imagesName);
         }
        Post::create([
+            'Room'   => $request->Room,
+            'Bathroom'   => $request->Bathroom,
+            'Price'   => $request->Price,
+            'city'   => $request->city,
             'description'   => $request->description,
+
+
             'user_id'       => Auth::id(),
             'fileNames'     => $fileNames
         ]);
@@ -49,9 +59,36 @@ class PostController extends Controller
         return to_route('dashboard');
     }
 
-    public function PostsSearch($search) {
+    public function PostsSearch(Request $request,$search) {
         $data['data'] = __("Home");
-        $data['posts'] = Post::where('description', 'LIKE', "%{$search}%")->with('user')->paginate(6);
+        $Postes = Post::where('description', 'LIKE', "%{$search}%")->with('user');
+        if (isset($request->Room))
+        {
+            $Postes->where('Room',$request->Room);
+            $data['Room']= (float)$request->Room;
+        }
+        if (isset($request->Bathroom))
+        {
+            $Postes->where('Bathroom',$request->Bathroom);
+            $data['Bathroom']= (float)$request->Bathroom;
+        }
+         if (isset($request->minPrice))
+        {
+            $Postes->where('Price','<=', $request->minPrice);
+            $data['minPrice']= (float)$request->minPrice;
+        }
+        if (isset($request->maxPrice))
+        {
+            $Postes->where('Price','>=', $request->maxPrice);
+            $data['maxPrice']= (float)$request->maxPrice;
+        }
+        if (isset($request->city))
+        {
+            $Postes->where('city',$request->city);
+            $data['city']= $request->city;
+        }
+
+        $data['posts'] =     $Postes->paginate(6);
         return view('pages.search', $data);
     }
 }

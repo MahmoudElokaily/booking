@@ -366,7 +366,7 @@
                 if ($("#main-left-nav").hasClass("d-none")) {
                     $("#main-left-nav").removeClass("d-none")
                 } else {
-                    $("#main-left-nav").addClass("d-none");
+                    $("#main-left-nav").addClass("none");
                 }
 
 
