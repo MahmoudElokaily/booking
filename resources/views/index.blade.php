@@ -381,9 +381,16 @@
                             alert('An error occurred while unliking the post.');
                         }
                     });
+
                 }
             });
+
+            $(".last-messages").click(function (e) {
+                e.preventDefault(); // Prevent the default action of the link
+                $(".last-message-show").toggleClass("show"); // Toggle the show class
+            });
         });
+
     </script>
 
 </body>

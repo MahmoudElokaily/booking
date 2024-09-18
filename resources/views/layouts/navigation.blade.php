@@ -101,3 +101,4 @@
         </div>
     </div>
 </nav>
+<script src="//unpkg.com/alpinejs" defer></script>
