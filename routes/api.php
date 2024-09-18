@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ChatController;
 use App\Http\Controllers\API\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('');
 Route::group(["middleware" => "auth:sanctum"], function () {
     Route::post("create-post" , [PostController::class , "createPost"]);
+    Route::get("latest-chats" , [ChatController::class , "latestChats"]);
+    Route::get("chat-with/{receiver_id}" , [ChatController::class , "chatWith"]);
 });
 Route::post("/login" , [AuthController::class , "login"]);
 Route::post("/register" , [AuthController::class , "register"]);
@@ -18,4 +21,5 @@ Route::get("/posts" , [PostController::class , "all"]);
 Route::get("/offer-posts" , [PostController::class , "offerPosts"]);
 Route::get("/looking-posts" , [PostController::class , "lookingPosts"]);
 Route::get("/post/{post_id}" , [PostController::class , "post"]);
+Route::get("/search/post/{search}" , [PostController::class , "search"]);
 

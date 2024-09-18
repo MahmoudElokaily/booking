@@ -11,17 +11,40 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     public function post($postId){
-        $post = Post::findOrFail($postId);
-        dd($post->likes);
+        $post = Post::withCount('likes')->findOrFail($postId); // Automatically adds a `likes_count` attribute
+        $likeCount = $post->likes->count(); // Assuming `likes` is a relationship
+        $imageUrls = [];
+        if ($post->fileNames) {
+            $fileNames = json_decode($post->fileNames);
+            foreach ($fileNames as $file) {
+                $imageUrls[] = asset('images/owner/' . $post->user->name . '/' . $file);
+            }
+        }
+        $post->images = $imageUrls;
         return response()->json([
+            'status' => true,
             'message' => 'One Post',
-            'posts' => $post
+            'post' => $post,
+            'likes_count' => $likeCount // Add number of likes to response
         ], 200);
     }
 
     public function all() {
-        $posts = Post::all();
+        $posts = Post::withCount('likes')->get();
+        $posts->each(function ($post) {
+            $imageUrls = [];
+            if ($post->fileNames) {
+                $fileNames = json_decode($post->fileNames);
+                foreach ($fileNames as $file) {
+                    $imageUrls[] = asset('images/owner/' . $post->user->name . '/' . $file);
+                }
+            }
+            // Add the image URLs as a new attribute in the post
+            $post->images = $imageUrls;
+        });
+
         return response()->json([
+            'status' => true,
             'message' => 'all posts',
             'posts' => $posts
         ], 200);
@@ -29,20 +52,48 @@ class PostController extends Controller
 
     public function lookingPosts() {
         $posts = Post::with('user')
+            ->withCount('likes')
             ->where('type'  , "Looking")
             ->orderBy('created_at', 'desc')
             ->get();
+        $posts->each(function ($post) {
+            $imageUrls = [];
+            if ($post->fileNames) {
+                $fileNames = json_decode($post->fileNames);
+                foreach ($fileNames as $file) {
+                    $imageUrls[] = asset('images/owner/' . $post->user->name . '/' . $file);
+                }
+            }
+            // Add the image URLs as a new attribute in the post
+            $post->images = $imageUrls;
+        });
+
         return response()->json([
+            'status' => true,
             'message' => 'looking posts',
             'posts' => $posts
         ], 200);
     }
     public function offerPosts() {
         $posts = Post::with('user')
-            ->where('type' , "Offer")
+            ->withCount('likes') // Adds the `likes_count` attribute
+            ->where('type', 'Offer')
             ->orderBy('created_at', 'desc')
             ->get();
+        $posts->each(function ($post) {
+            $imageUrls = [];
+            if ($post->fileNames) {
+                $fileNames = json_decode($post->fileNames);
+                foreach ($fileNames as $file) {
+                    $imageUrls[] = asset('images/owner/' . $post->user->name . '/' . $file);
+                }
+            }
+            // Add the image URLs as a new attribute in the post
+            $post->images = $imageUrls;
+        });
+
         return response()->json([
+            'status' => true,
             'message' => 'Offer posts',
             'posts' => $posts
         ], 200);
@@ -72,8 +123,29 @@ class PostController extends Controller
             'type'          => $request->type
         ]);
         return response()->json([
+            'status' => true,
             'message' => 'post created',
             'post' => $post
+        ] , 201);
+    }
+
+    public function search($search) {
+        $posts = Post::where('description', 'LIKE', "%{$search}%")->with('user')->get();
+        $posts->each(function ($post) {
+            $imageUrls = [];
+            if ($post->fileNames) {
+                $fileNames = json_decode($post->fileNames);
+                foreach ($fileNames as $file) {
+                    $imageUrls[] = asset('images/owner/' . $post->user->name . '/' . $file);
+                }
+            }
+            // Add the image URLs as a new attribute in the post
+            $post->images = $imageUrls;
+        });
+        return response()->json([
+            'status' => true,
+            'message' => 'post created',
+            'post' => $posts
         ] , 201);
     }
 }
