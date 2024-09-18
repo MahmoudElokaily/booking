@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index() {
         $data['title'] = __("Home");
-        $data['posts'] = Post::with('user')->orderBy('created_at', 'desc')->limit(10)->get()->toArray();
+        $data['posts'] = Post::with('user')->orderBy('created_at', 'desc')->limit(10)->paginate(20);
         return view('pages.home' , $data);
     }
     public function ownerPosts() {
