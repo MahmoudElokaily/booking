@@ -35,7 +35,6 @@ class ChatComponent extends Component
         foreach ($messages as $message) {
             $this->chatMessage($message);
         }
-
         $this->user = User::findOrFail($user_id);
     }
 

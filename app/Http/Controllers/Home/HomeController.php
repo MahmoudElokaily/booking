@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function ownerPosts() {
         $data['title'] = __("Looking");
         $data['posts'] = Post::with('user')
-            ->where('fileNames' , '!=' , "")
+            ->where('type'  , "Looking")
             ->orderBy('created_at', 'desc')
             ->paginate(4);
         return view('pages.owner-posts' , $data);
@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function tenantPosts() {
         $data['title'] = __("Offering");
         $data['posts'] = Post::with('user')
-            ->where('fileNames' , "")
+            ->where('type' , "Offer")
             ->orderBy('created_at', 'desc')
             ->paginate(6);
         return view('pages.tenant-posts' , $data);

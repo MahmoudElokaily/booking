@@ -9,6 +9,14 @@
         </div>
 
         <div class="mt-4">
+            <select class="form-select w-full" aria-label="Default select example" required name="type">
+                <option selected value="">Open this select menu</option>
+                <option value="Offer">Offer</option>
+                <option value="Looking">Looking</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
             <x-input-label for="image" :value="__('image')" />
             <x-text-input id="image" class="block mt-1 w-full" type="file" name="images[]" :value="old('image')" required multiple/>
             <x-input-error :messages="$errors->get('images')" class="mt-2" />

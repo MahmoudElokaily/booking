@@ -12,18 +12,16 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function createOwnerPost() {
+    public function createPost()
+    {
         $data["title"] = "Create Post";
-        return view("pages.create-owner-post" , $data);
-    }
-    public function createTenantPost() {
-        $data["title"] = "Create Post";
-        return view("pages.create-tenant-post" , $data);
+        return view("pages.create-post" , $data);
     }
 
     public function storePost(Request $request) {
         $request->validate([
             "description" => "required",
+            "type" => "required",
         ]);
         $fileNames = NULL;
         $imagesName = [];
@@ -38,7 +36,8 @@ class PostController extends Controller
        Post::create([
             'description'   => $request->description,
             'user_id'       => Auth::id(),
-            'fileNames'     => $fileNames
+            'fileNames'     => $fileNames,
+            'type'          => $request->type
         ]);
         return to_route('dashboard');
     }

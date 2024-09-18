@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Like\LikeController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -23,10 +24,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::group(['prefix' => 'admin' , "as" => "admin." , "middleware" => "auth"] , function (){
-   Route::get("create-owner-post" , [PostController::class , "createOwnerPost"])->name("create-owner-post");
-   Route::get("create-tenant-post" , [PostController::class , "createTenantPost"])->name("create-tenant-post");
+   Route::get("create-post" , [PostController::class , "createPost"])->name("create-post");
    Route::post("store-post" , [PostController::class , "storePost"])->name("store-post");
    Route::get("delete-post/{id}" , [PostController::class , "deletePost"])->name("delete-post")->middleware('CheckPermission');
+   // likes
+    Route::post('/posts/like', [LikeController::class, 'store'])->name('posts.like');
+    Route::post('/posts/unlike', [LikeController::class, 'destroy'])->name('posts.unlike');
 });
 Route::get("posts-search/{search}" , [PostController::class , "PostsSearch"])->name("posts-search");
 require __DIR__.'/auth.php';

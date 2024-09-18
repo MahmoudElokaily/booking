@@ -21,8 +21,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <a type="button" href="{{route("admin.create-owner-post")}}" class="btn btn-dark btn-lg m-3">Add Looking</a>
-                    <a type="button" href="{{route("admin.create-tenant-post")}}" class="btn btn-dark btn-lg m-3">Add Offer</a>
+                    <a type="button" href="{{route("admin.create-post")}}" class="btn btn-dark btn-lg m-3">Add Post</a>
                 </div>
             </div>
         </div>
@@ -71,6 +70,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Type</th>
                     <th scope="col">From</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -80,6 +80,7 @@
                     <tr>
                         <th scope="row">{{++$index}}</th>
                         <td class="text-truncate" style="max-width: 200px;">{{$post->description}}</td>
+                        <td class="text-truncate" style="max-width: 200px;">{{$post->type}}</td>
                         <td>{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</td>
                         <td>
                             <a type="button" href="{{route('admin.delete-post' , $post->id)}}" class="btn btn-danger">Delete</a>

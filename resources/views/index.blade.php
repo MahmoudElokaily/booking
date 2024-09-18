@@ -246,6 +246,9 @@
                                 height: 24px;
                                 fill: #e4e6ec;
                             }
+                             .liked {
+                                 fill: blue; /* Change the color to blue */
+                             }
                         </style>
                         @section('content')
 
@@ -339,6 +342,46 @@
 
                 // Show the modal
                 $('#imageModal').modal('show');
+            });
+
+            $(".like-button").click(function (){
+                var postId = $(this).data('id');
+                var path = $(this).find('path');
+
+                if (!path.hasClass('liked')) {
+                    $.ajax({
+                        url: '{{route("admin.posts.like")}}',  // Your endpoint for liking a post
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
+                            post_id: postId
+                        },
+                        success: function (response) {
+                            path.addClass('liked');
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            alert('An error occurred while liking the post.');
+                        }
+                    });
+                }
+                else {
+                    $.ajax({
+                        url: '{{route("admin.posts.unlike")}}',  // Your endpoint for liking a post
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
+                            post_id: postId
+                        },
+                        success: function (response) {
+                            path.removeClass('liked');
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            alert('An error occurred while unliking the post.');
+                        }
+                    });
+                }
             });
         });
     </script>
