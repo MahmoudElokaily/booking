@@ -347,6 +347,8 @@
             $(".like-button").click(function (){
                 var postId = $(this).data('id');
                 var path = $(this).find('path');
+                var likeCountSpan = $(this).next('span');
+                var currentLikes = parseInt(likeCountSpan.text());
 
                 if (!path.hasClass('liked')) {
                     $.ajax({
@@ -358,6 +360,7 @@
                         },
                         success: function (response) {
                             path.addClass('liked');
+                            likeCountSpan.text(currentLikes + 1);
                         },
                         error: function (xhr, status, error) {
                             // Handle any errors
@@ -375,6 +378,7 @@
                         },
                         success: function (response) {
                             path.removeClass('liked');
+                            likeCountSpan.text(currentLikes - 1);
                         },
                         error: function (xhr, status, error) {
                             // Handle any errors

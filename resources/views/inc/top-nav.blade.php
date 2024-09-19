@@ -18,7 +18,7 @@
         <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop"
                 type="button"><i class="fas fa-bars"></i></button>
         <span id="smlogo" class="d-md-none"
-              style="font-size:1.1rem;color:blue;font-weight:700">Merchant Face</span>
+              style="font-size:1.1rem;color:blue;font-weight:700">Knighbours</span>
         <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 md-md-noney-md-0 mw-100 navbar-search">
             <div class="input-group"><input class="bg-light form-control border-0 small search-value" type="text"
                                             placeholder="Search for ...">
@@ -66,7 +66,7 @@
                             @foreach($messages as $message)
                                 <a class="d-flex align-items-center dropdown-item" href="#">
                                     <div class="dropdown-list-image mr-3"><img class="rounded-circle"
-                                                                               src="@if(isset($message->sender->photo)) {{asset('images/' . $message->sender->name . "/" . $message->sender->photo)}} @else {{asset('images/default/default.jpg')}} @endif">
+                                                                               src="@if(isset($message->receiver->photo)) {{asset('images/' . $message->receiver->name . "/" . $message->receiver->photo)}} @else {{asset('images/default/default.jpg')}} @endif">
                                         <div class="bg-success status-indicator"></div>
                                     </div>
                                     <div class="font-weight-bold">
