@@ -24,6 +24,15 @@ class ChatController extends Controller
                 // Group messages by the other user in the chat
                 return $message->sender_id == $userId ? $message->receiver_id : $message->sender_id;
             });
+        foreach ($latestChats as $message){
+            if ($message['sender']->photo){
+                $message['sender']->photo = asset('images/' . $message->sender->name . "/" . $message->sender->photo);
+            }
+            if ($message['receiver']->photo){
+                $message['receiver']->photo = asset('images/' . $message->receiver->name . "/" . $message->receiver->photo);
+            }
+        }
+
         return response()->json([
             'status' => true,
             'message' => 'Latest chats',
@@ -52,8 +61,17 @@ class ChatController extends Controller
                 $query->where('sender_id', $receiverId)
                     ->where('receiver_id', $userId);
             })
+            ->with(['sender', 'receiver'])
             ->orderBy('created_at', 'asc') // Order messages by creation time, ascending
             ->get();
+        foreach ($messages as $message){
+            if ($message['sender']->photo){
+                $message['sender']->photo = asset('images/' . $message->sender->name . "/" . $message->sender->photo);
+            }
+            if ($message['receiver']->photo){
+                $message['receiver']->photo = asset('images/' . $message->receiver->name . "/" . $message->receiver->photo);
+            }
+        }
 
         return response()->json([
             'status' => true,
