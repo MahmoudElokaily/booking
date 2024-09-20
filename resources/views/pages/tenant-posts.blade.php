@@ -219,9 +219,9 @@
 
 
 
-    <div class="row v-body">
+    <div class="row v-body ml-0 mt-2 justify-content-md-center">
 
-        <div class="col-lg-8 col-md-12 border-right p-0">
+        <div class="col-lg-11 col-md-12 border-right mt-2 p-0">
 
             <style type="text/css">
                 .info-img-box {
@@ -485,7 +485,7 @@
                     background-color: #dcdfe9
                 }
             </style>
-            @include('inc.suggestion')
+
 
         </div>
     </div>

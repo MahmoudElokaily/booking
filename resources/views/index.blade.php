@@ -141,7 +141,7 @@
             <div class="d-flex flex-column flex-grow-1">
                 <div id="content">
                     @include('inc.top-nav')
-                    <main role="main" class="container-fluid bg-white p-0">
+                    <main role="main" class="container-fluid bg-white ">
                         <style type="text/css">
                             .post-svg svg,
                             .post-svg i {
@@ -276,9 +276,11 @@
                                 height: 24px;
                                 fill: #e4e6ec;
                             }
-                             .liked {
-                                 fill: blue; /* Change the color to blue */
-                             }
+
+                            .liked {
+                                fill: blue;
+                                /* Change the color to blue */
+                            }
                         </style>
                         @section('content')
 
@@ -290,13 +292,15 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <img id="modalImage" src="" class="img-fluid w-100" alt="Full Screen Image">
                 </div>
-                <button type="button" class="close position-absolute" style="top: 10px; right: 20px;" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close position-absolute" style="top: 10px; right: 20px;"
+                    data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -309,18 +313,26 @@
 
 
     <script type="text/javascript">
+        $("#navbarseach").submit(function() {
+          event.preventDefault();
+            $("#search-button").click();
+
+        });
+
         $("#search-button").click(function() {
 
-
+            event.preventDefault();
             var search = $(".search-value").val();
+            console.log(search);
 
             if (search != "") {
-                // Construct the URL with the search query
-                var url = '/posts-search/' + encodeURIComponent(search);
+            // Construct the URL with the search query
+            var url = '/posts-search/' + encodeURIComponent(search);
 
-                // Navigate to the constructed URL
-                window.location.href = url;
+            // Navigate to the constructed URL
+            window.location.href = url;
             }
+
         });
     </script>
     <script type="text/javascript">
@@ -399,7 +411,7 @@
             });
 
         });
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#carouselExampleIndicators').carousel();
 
             $('.carousel-inner .carousel-item img').on('click', function() {
@@ -413,7 +425,7 @@
                 $('#imageModal').modal('show');
             });
 
-            $(".like-button").click(function (){
+            $(".like-button").click(function() {
                 var postId = $(this).data('id');
                 var path = $(this).find('path');
                 var likeCountSpan = $(this).next('span');
@@ -421,35 +433,34 @@
 
                 if (!path.hasClass('liked')) {
                     $.ajax({
-                        url: '{{route("admin.posts.like")}}',  // Your endpoint for liking a post
+                        url: '{{ route('admin.posts.like') }}', // Your endpoint for liking a post
                         type: 'POST',
                         data: {
                             _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
                             post_id: postId
                         },
-                        success: function (response) {
+                        success: function(response) {
                             path.addClass('liked');
                             likeCountSpan.text(currentLikes + 1);
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Handle any errors
                             alert('An error occurred while liking the post.');
                         }
                     });
-                }
-                else {
+                } else {
                     $.ajax({
-                        url: '{{route("admin.posts.unlike")}}',  // Your endpoint for liking a post
+                        url: '{{ route('admin.posts.unlike') }}', // Your endpoint for liking a post
                         type: 'POST',
                         data: {
                             _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
                             post_id: postId
                         },
-                        success: function (response) {
+                        success: function(response) {
                             path.removeClass('liked');
                             likeCountSpan.text(currentLikes - 1);
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Handle any errors
                             alert('An error occurred while unliking the post.');
                         }
@@ -458,12 +469,11 @@
                 }
             });
 
-            $(".last-messages").click(function (e) {
+            $(".last-messages").click(function(e) {
                 e.preventDefault(); // Prevent the default action of the link
                 $(".last-message-show").toggleClass("show"); // Toggle the show class
             });
         });
-
     </script>
 
 </body>

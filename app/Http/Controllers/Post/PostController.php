@@ -23,9 +23,7 @@ class PostController extends Controller
             "description"   => "required",
             "type"          => "required",
             "city"          => "required",
-            "room"          => "required",
-            "bathroom"      => "required",
-            "price"         => "required",
+
         ]);
         $fileNames = NULL;
         $imagesName = [];
@@ -58,7 +56,10 @@ class PostController extends Controller
 
     public function PostsSearch(Request $request,$search) {
         $data['data'] = __("Home");
+
         $Postes = Post::where('description', 'LIKE', "%{$search}%")->with('user');
+        $Postes->orWhere('city', 'LIKE', "%{$search}%");
+
         if (isset($request->Room))
         {
             $Postes->where('Room',$request->Room);

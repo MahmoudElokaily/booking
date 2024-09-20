@@ -219,9 +219,9 @@
 
 
 
-    <div class="row v-body">
+    <div class="row v-body ml-0 mt-2 justify-content-md-center">
 
-        <div class="col-lg-8 col-md-12 border-right p-0">
+        <div class="col-lg-11 col-md-12 border-right p-0">
 
             <style type="text/css">
                 .info-img-box {
@@ -333,8 +333,25 @@
 
                                     <div class="info-intro text-truncate" style="max-width: 500px">
                                         <span class="text-success "></span>
-                                        {{$post['description']}}
+                                       {{$post['description']}}
                                     </div>
+
+                                    <div class="info-intro text-truncate row" style="max-width: 500px">
+                                        <div class="col">
+                                            city :   {{$post['city']}}
+                                        </div>
+                                        <div class="col">
+                                            Bathroom :  {{$post['Bathroom']}}
+                                        </div>
+                                        <div class="col">
+                                            Room :  {{$post['Room']}}
+                                        </div>
+                                        <div class="col">
+                                            Price :  {{$post['Price']}}
+                                        </div>
+
+                                    </div>
+
                                     @if(isset($post['fileNames']) && $post['fileNames'] != "")
                                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                             <ol class="carousel-indicators">
@@ -481,7 +498,7 @@
                     background-color: #dcdfe9
                 }
             </style>
-            @include('inc.suggestion')
+            {{-- @include('inc.suggestion') --}}
         </div>
     </div>
 @endsection

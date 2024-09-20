@@ -3,7 +3,7 @@
             type="button"><i class="fas fa-bars"></i></button><span id="smlogo" class="d-md-none"
             style="font-size:1.1rem;color:blue;font-weight:700">Merchant Face</span>
 
-            <form  class="navbarseach form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 md-md-noney-md-0 mw-100 navbar-search">
+            <form  id="navbarseach" class="navbarseach form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 md-md-noney-md-0 mw-100 navbar-search">
             <div id="navbarseach" class="navbarseach input-group"><input class="bg-light form-control border-0 small search-value" type="text"
                     placeholder="Search for ...">
                 <div class="input-group-append"><button class="btn btn-primary py-0" id="search-button"
@@ -32,8 +32,8 @@
 
                 {{--                    </div> --}}
                 {{--                </li> --}}
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                <li class="nav-item dropdown no-arrow d-none mx-1">
+                    <div class="nav-item dropdown no-arrow  none"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                             aria-expanded="false" href="#"><span class="badge badge-danger badge-counter">3+</span><i
                                 class="fas fa-bell fa-fw"></i></a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item dropdown no-arrow mx-1">
+                <li class="nav-item dropdown no-arrow d-none mx-1">
                     <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
                             aria-expanded="false" href="#"><i class="fas fa-envelope fa-fw"></i><span
                                 class="badge badge-danger badge-counter">7</span></a>
@@ -136,6 +136,7 @@
                     <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
                     </div>
                 </li>
+
                 <div class="d-none d-sm-block topbar-divider"></div>
                 <li class="nav-item dropdown no-arrow">
                     <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
