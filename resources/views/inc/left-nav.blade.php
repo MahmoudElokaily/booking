@@ -11,15 +11,14 @@
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item"><a class="nav-link @isset($title) @if($title != "Home") v-nav-link @endif @endisset" href="{{route('home')}}" title="Home"><i
                         class="fas fa-home"></i><span>&nbsp;Home</span></a></li>
-
             <li class="nav-item"><a class="nav-link  @isset($title) @if($title != "Offering") v-nav-link @endif @endisset " href="{{route('tenant-posts')}}"><i
                         class="fas fa-user-edit"></i><span>&nbsp;Offering</span></a></li>
             <li class="nav-item"><a class="nav-link @isset($title) @if($title != "Looking") v-nav-link @endif @endisset" href="{{route('owner-posts')}}"><i
                         class="fas fa-table"></i><span>&nbsp;Looking</span></a></li>
             <li class="nav-item"><a class="nav-link v-nav-link" href="{{route('dashboard')}}"><i
                         class="fas fa-envelope fa-fw"></i><span>&nbsp;Messages</span></a></li>
-{{--            <li class="nav-item"><a class="nav-link v-nav-link" href="#/auth/notifications"><i--}}
-{{--                        class="fas fa-bell fa-fw"></i><span>&nbsp;Notifications</span></a></li>--}}
+            {{--            <li class="nav-item"><a class="nav-link v-nav-link" href="#/auth/notifications"><i--}}
+            {{--                        class="fas fa-bell fa-fw"></i><span>&nbsp;Notifications</span></a></li>--}}
             @auth
                 <li class="nav-item"><a class="nav-link v-nav-link" href="{{route('profile.edit')}}"><i
                             class="fas fa-user"></i><span>&nbsp;Profile</span></a></li>

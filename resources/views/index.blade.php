@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/viewer.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-msg.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/site.css') }}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -274,6 +276,9 @@
                                 height: 24px;
                                 fill: #e4e6ec;
                             }
+                             .liked {
+                                 fill: blue; /* Change the color to blue */
+                             }
                         </style>
                         @section('content')
 
@@ -285,6 +290,24 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <img id="modalImage" src="" class="img-fluid w-100" alt="Full Screen Image">
+                </div>
+                <button type="button" class="close position-absolute" style="top: 10px; right: 20px;" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
     <script type="text/javascript">
         $("#search-button").click(function() {
 
@@ -376,7 +399,73 @@
             });
 
         });
+        $(document).ready(function(){
+            $('#carouselExampleIndicators').carousel();
+
+            $('.carousel-inner .carousel-item img').on('click', function() {
+                // Get the source of the clicked image
+                var imgSrc = $(this).attr('src');
+
+                // Set the src of the modal image to the clicked image
+                $('#modalImage').attr('src', imgSrc);
+
+                // Show the modal
+                $('#imageModal').modal('show');
+            });
+
+            $(".like-button").click(function (){
+                var postId = $(this).data('id');
+                var path = $(this).find('path');
+                var likeCountSpan = $(this).next('span');
+                var currentLikes = parseInt(likeCountSpan.text());
+
+                if (!path.hasClass('liked')) {
+                    $.ajax({
+                        url: '{{route("admin.posts.like")}}',  // Your endpoint for liking a post
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
+                            post_id: postId
+                        },
+                        success: function (response) {
+                            path.addClass('liked');
+                            likeCountSpan.text(currentLikes + 1);
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            alert('An error occurred while liking the post.');
+                        }
+                    });
+                }
+                else {
+                    $.ajax({
+                        url: '{{route("admin.posts.unlike")}}',  // Your endpoint for liking a post
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}', // Include CSRF token for Laravel
+                            post_id: postId
+                        },
+                        success: function (response) {
+                            path.removeClass('liked');
+                            likeCountSpan.text(currentLikes - 1);
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            alert('An error occurred while unliking the post.');
+                        }
+                    });
+
+                }
+            });
+
+            $(".last-messages").click(function (e) {
+                e.preventDefault(); // Prevent the default action of the link
+                $(".last-message-show").toggleClass("show"); // Toggle the show class
+            });
+        });
+
     </script>
+
 </body>
 
 </html>

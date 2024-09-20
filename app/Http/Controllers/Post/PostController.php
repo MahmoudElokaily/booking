@@ -12,22 +12,20 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-    public function createOwnerPost() {
+    public function createPost()
+    {
         $data["title"] = "Create Post";
-        return view("pages.create-owner-post" , $data);
-    }
-    public function createTenantPost() {
-        $data["title"] = "Create Post";
-        return view("pages.create-tenant-post" , $data);
+        return view("pages.create-post" , $data);
     }
 
     public function storePost(Request $request) {
         $request->validate([
-            "description" => "required",
-            'Room'   => "required",
-            'Bathroom'   => "required",
-             'Price'   => "required",
-            'city'   => "required",
+            "description"   => "required",
+            "type"          => "required",
+            "city"          => "required",
+            "room"          => "required",
+            "bathroom"      => "required",
+            "price"         => "required",
         ]);
         $fileNames = NULL;
         $imagesName = [];
@@ -40,15 +38,14 @@ class PostController extends Controller
             $fileNames = json_encode($imagesName);
         }
        Post::create([
-            'Room'   => $request->Room,
-            'Bathroom'   => $request->Bathroom,
-            'Price'   => $request->Price,
-            'city'   => $request->city,
             'description'   => $request->description,
-
-
             'user_id'       => Auth::id(),
-            'fileNames'     => $fileNames
+            'fileNames'     => $fileNames,
+            'type'          => $request->type,
+            'city'          => $request->city,
+            'room'          => $request->room,
+            'price'         => $request->price,
+            'bathroom'      => $request->bathroom,
         ]);
         return to_route('dashboard');
     }
@@ -72,7 +69,7 @@ class PostController extends Controller
             $Postes->where('Bathroom',$request->Bathroom);
             $data['Bathroom']= (float)$request->Bathroom;
         }
-         if (isset($request->minPrice))
+        if (isset($request->minPrice))
         {
             $Postes->where('Price','<=', $request->minPrice);
             $data['minPrice']= (float)$request->minPrice;

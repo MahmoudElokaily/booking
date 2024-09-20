@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -54,4 +54,6 @@ class RegisteredUserController extends Controller
 
         return redirect(route('home', absolute: false));
     }
+
+
 }

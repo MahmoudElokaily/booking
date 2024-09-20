@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("description");
             $table->json("fileNames")->nullable();
+            $table->string("type");
             $table->integer("user_id");
             $table->integer("Room")->nullable();
             $table->integer("Bathroom")->nullable();
