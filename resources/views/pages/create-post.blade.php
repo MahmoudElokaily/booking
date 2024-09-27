@@ -15,6 +15,12 @@
         </div>
 
         <div class="mt-4">
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"/>
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
             <x-input-label for="price" :value="__('Price')" />
             <x-text-input id="price" class="block mt-1 w-full" type="number" step="0.01" name="price" :value="old('price')" required/>
             <x-input-error :messages="$errors->get('price')" class="mt-2" />
@@ -31,6 +37,11 @@
             <x-text-input id="bathroom" class="block mt-1 w-full" type="number" name="bathroom" :value="old('bathroom')" required/>
             <x-input-error :messages="$errors->get('bathroom')" class="mt-2" />
         </div>
+        <div class="mt-4">
+            <x-input-label for="area" :value="__('Area')" />
+            <x-text-input id="area" class="block mt-1 w-full" type="number" name="area" :value="old('area')" required/>
+            <x-input-error :messages="$errors->get('area')" class="mt-2" />
+        </div>
 
         <div class="mt-4">
             <x-input-label for="type" :value="__('Type Of Post')" />
@@ -38,6 +49,15 @@
                 <option selected value="">Open this select menu</option>
                 <option value="Offer">Offer</option>
                 <option value="Looking">Looking</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="type" :value="__('Property')" />
+            <select class="form-select w-full" aria-label="Default select example" required name="property">
+                <option selected value="">Open this select menu</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
             </select>
         </div>
 

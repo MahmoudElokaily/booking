@@ -331,18 +331,39 @@
 
         });
         $(document).ready(function(){
-            $('#carouselExampleIndicators').carousel();
-
             $('.carousel-inner .carousel-item img').on('click', function() {
-                // Get the source of the clicked image
-                var imgSrc = $(this).attr('src');
+                // Get the closest post element
+                var postElement = $(this).closest('.list-group-item');
 
-                // Set the src of the modal image to the clicked image
-                $('#modalImage').attr('src', imgSrc);
+                // Find all carousel items of the clicked post
+                var postCarouselItems = postElement.find('.carousel-inner .carousel-item').clone();
+
+                // Get the index of the clicked image
+                var index = $(this).closest('.carousel-item').index();
+
+                // Set the cloned items into the modal's carousel
+                $('#carouselModalImages').html(postCarouselItems);
+
+                // Remove 'active' class from all cloned items and set the correct active one
+                $('#carouselModalImages .carousel-item').removeClass('active');
+                $('#carouselModalImages .carousel-item').eq(index).addClass('active');
+
+                // Reinitialize the carousel in the modal
+                $('#carouselModal').carousel(0); // Start from the first image
+                $('#carouselModal').carousel('dispose'); // Destroy any previous instance
+                $('#carouselModal').carousel(); // Reinitialize the carousel
 
                 // Show the modal
                 $('#imageModal').modal('show');
             });
+
+// Clear carousel items when the modal is closed to avoid duplication
+            $('#imageModal').on('hidden.bs.modal', function () {
+                $('#carouselModalImages').empty();
+            });
+
+
+
 
             $(".like-button").click(function (){
                 var postId = $(this).data('id');

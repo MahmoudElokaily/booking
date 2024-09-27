@@ -224,7 +224,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col">
                         <input id="Room" class="form-control" placeholder="Room" type="number"
                                name="Room" min="1" value='@isset($Room){{$Room}}@endisset'/>
@@ -243,6 +243,26 @@
                                min="1" name="maxPrice" value='@if(isset($maxPrice)){{$maxPrice}}@endif' />
 
                     </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="area" class="form-control" placeholder="Area" type="number"
+                               name="area" min="1" value='@isset($area){{$area}}@endisset'/>
+                    </div>
+                    <div class="col">
+                        <input id="address" class="form-control" placeholder="Address" type="text"
+                               name="address" value='@if(isset($address)){{$address}}@endif' />
+                    </div>
+                    <div class="col">
+                        <select class="form-control" aria-label="Default select example" name="property">
+                            <option selected value="">Open this select menu</option>
+                            <option value="residential" @if(isset($property) && $property == "residential") selected @endif>Residential</option>
+                                <option value="commercial" @if(isset($property) && $property == "commercial") selected @endif>Commercial</option>
+                        </select>
+                    </div>
+
 
                     <div class="col">
                         <button type="submit" class="btn-lg btn-primary py-0" id="search-button" type="button"><i

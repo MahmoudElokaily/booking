@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer("Bathroom")->nullable();
             $table->integer("Price")->nullable();
             $table->text("city")->nullable();
+            $table->text("property")->nullable();
+            $table->longText("address")->nullable();
+            $table->integer("area")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

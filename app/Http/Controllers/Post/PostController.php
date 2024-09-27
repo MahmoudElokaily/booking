@@ -26,6 +26,8 @@ class PostController extends Controller
             "room"          => "required",
             "bathroom"      => "required",
             "price"         => "required",
+            "area"          => "required",
+            "property"      => "required"
         ]);
         $fileNames = NULL;
         $imagesName = [];
@@ -46,6 +48,9 @@ class PostController extends Controller
             'room'          => $request->room,
             'price'         => $request->price,
             'bathroom'      => $request->bathroom,
+            'area'          => $request->area ?? '',
+            'property'      => $request->property ?? '',
+            'address'       => $request->address ?? '',
         ]);
         return to_route('dashboard');
     }
@@ -84,8 +89,23 @@ class PostController extends Controller
             $Postes->where('city',$request->city);
             $data['city']= $request->city;
         }
+        if (isset($request->area))
+        {
+            $Postes->where('area',$request->area);
+            $data['area']= $request->area;
+        }
+        if (isset($request->address))
+        {
+            $Postes->where('address',$request->address);
+            $data['address']= $request->address;
+        }
+        if (isset($request->property))
+        {
+            $Postes->where('property',$request->property);
+            $data['property']= $request->property;
+        }
 
-        $data['posts'] =     $Postes->paginate(6);
+        $data['posts'] = $Postes->paginate(6);
         return view('pages.search', $data);
     }
 }
