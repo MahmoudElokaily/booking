@@ -62,6 +62,7 @@ class PostController extends Controller
     }
 
     public function PostsSearch(Request $request,$search) {
+        $data['title'] = __("Search");
         $data['data'] = __("Home");
         $Postes = Post::where('description', 'LIKE', "%{$search}%")->with('user');
         if (isset($request->Room))

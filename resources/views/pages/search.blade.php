@@ -215,66 +215,66 @@
 
 
     <div class="row v-body">
-        <form>
-            <div class="form pl-2 pr-2">
-                <div class="row pb-2 pt-2">
-                    <div class="col">
-                        <input id="city" class="form-control" placeholder="city" type="text" name="city"
-                               value="@isset($city) {{ $city }} @endisset" />
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <div class="col">
-                        <input id="Room" class="form-control" placeholder="Room" type="number"
-                               name="Room" min="1" value='@isset($Room){{$Room}}@endisset'/>
-                    </div>
-                    <div class="col">
-                        <input id="Bathroom" class="form-control" placeholder="Bathroom" type="number"
-                               min="1" name="Bathroom"value='@if(isset($Bathroom)){{$Bathroom}}@endif' />
-                    </div>
-                    <div class="col">
-                        <input id="minPrice" class="form-control" placeholder="Min Price" type="number"
-                               min="1" name="minPrice" value='@if(isset($minPrice)){{$minPrice}}@endif' />
-
-                    </div>
-                    <div class="col">
-                        <input id="maxPrice" class="form-control" placeholder="Max Price" type="number"
-                               min="1" name="maxPrice" value='@if(isset($maxPrice)){{$maxPrice}}@endif' />
-
+        <div class="col-lg-12 col-md-12 border-right">
+            <form>
+                <div class="form pl-2 pr-2">
+                    <div class="row pb-2 pt-2">
+                        <div class="col">
+                            <input id="city" class="form-control" placeholder="city" type="text" name="city"
+                                   value="@isset($city) {{ $city }} @endisset" />
+                        </div>
                     </div>
 
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input id="Room" class="form-control" placeholder="Room" type="number"
+                                   name="Room" min="1" value='@isset($Room){{$Room}}@endisset'/>
+                        </div>
+                        <div class="col">
+                            <input id="Bathroom" class="form-control" placeholder="Bathroom" type="number"
+                                   min="1" name="Bathroom"value='@if(isset($Bathroom)){{$Bathroom}}@endif' />
+                        </div>
+                        <div class="col">
+                            <input id="minPrice" class="form-control" placeholder="Min Price" type="number"
+                                   min="1" name="minPrice" value='@if(isset($minPrice)){{$minPrice}}@endif' />
 
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input id="area" class="form-control" placeholder="Area" type="number"
-                               name="area" min="1" value='@isset($area){{$area}}@endisset'/>
+                        </div>
+                        <div class="col">
+                            <input id="maxPrice" class="form-control" placeholder="Max Price" type="number"
+                                   min="1" name="maxPrice" value='@if(isset($maxPrice)){{$maxPrice}}@endif' />
+
+                        </div>
+
+
                     </div>
-                    <div class="col">
-                        <input id="address" class="form-control" placeholder="Address" type="text"
-                               name="address" value='@if(isset($address)){{$address}}@endif' />
-                    </div>
-                    <div class="col">
-                        <select class="form-control" aria-label="Default select example" name="property">
-                            <option selected value="">Open this select menu</option>
-                            <option value="residential" @if(isset($property) && $property == "residential") selected @endif>Residential</option>
+                    <div class="row">
+                        <div class="col">
+                            <input id="area" class="form-control" placeholder="Area" type="number"
+                                   name="area" min="1" value='@isset($area){{$area}}@endisset'/>
+                        </div>
+                        <div class="col">
+                            <input id="address" class="form-control" placeholder="Address" type="text"
+                                   name="address" value='@if(isset($address)){{$address}}@endif' />
+                        </div>
+                        <div class="col">
+                            <select class="form-control" aria-label="Default select example" name="property">
+                                <option selected value="">Open this select menu</option>
+                                <option value="residential" @if(isset($property) && $property == "residential") selected @endif>Residential</option>
                                 <option value="commercial" @if(isset($property) && $property == "commercial") selected @endif>Commercial</option>
-                        </select>
+                            </select>
+                        </div>
+
+
+                        <div class="col">
+                            <button type="submit" class="btn-lg btn-primary py-0" id="search-button" type="button"><i
+                                    class="fas fa-search"></i></button>
+                        </div>
+
                     </div>
-
-
-                    <div class="col">
-                        <button type="submit" class="btn-lg btn-primary py-0" id="search-button" type="button"><i
-                                class="fas fa-search"></i></button>
-                    </div>
-
                 </div>
-            </div>
-            <br/>
-        </form>
-
-        <div class="col-lg-12 col-md-12 border-right p-0">
+                <br/>
+            </form>
 
             <style type="text/css">
                 .info-img-box {

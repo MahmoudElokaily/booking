@@ -40,7 +40,7 @@
 
     <div class="row v-body">
 
-        <div class="col-lg-8 col-md-12 border-right p-0">
+        <div class="col-lg-8 col-md-12 border-right">
 
             <style type="text/css">
                 .info-img-box {
